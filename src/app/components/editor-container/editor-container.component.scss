@@ -1,0 +1,17 @@
+.upi-editor-container {
+  width: 100%;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  // background-color: red;
+  padding: 10px;
+  row-gap: 5px;
+  column-gap: 5px;
+}
+
+.rect,
+.rect2 {
+  flex: 1;
+  width: 100%;
+  position: relative;
+}

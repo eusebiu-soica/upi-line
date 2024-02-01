@@ -1,0 +1,104 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="diffEditor"
+  tabindex="-1"
+  aria-labelledby="diffEditorLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="diffEditorLabel">Compare your code</h1>
+        <!-- middle container -->
+
+        <div class="middle-container">
+          <form
+            class="mx-auto my-2 my-lg-0 upi-form-input font-13 upi-form-size d-flex align-items-center"
+          >
+            <i class="bi bi-arrow-90deg-down me-2"></i>
+            <input
+              class="form-control"
+              id="file-name-1"
+              type="text"
+              placeholder="File name"
+              aria-label="File name"
+              title="File name"
+              [(ngModel)]="fileName1"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </form>
+          <button
+            class="btn-outline-secondary btn upi-button ms-2"
+            placement="bottom"
+            ngbTooltip="Paste in left side"
+            tooltipClass="upi-tooltip"
+            [openDelay]="800"
+            (click)="pasteCode('left')"
+          >
+            <i class="bi bi-clipboard2"></i>
+          </button>
+
+          <button
+            class="btn ms-2 me-2 btn-danger"
+            placement="bottom"
+            ngbTooltip="Clear content from both editors"
+            tooltipClass="upi-tooltip"
+            [openDelay]="800"
+            (click)="clearAll()"
+          >
+            <i class="bi bi-trash3"></i>
+          </button>
+          <button
+            class="btn-outline-secondary btn upi-button me-2"
+            placement="bottom"
+            ngbTooltip="Paste in right side"
+            tooltipClass="upi-tooltip"
+            [openDelay]="800"
+            (click)="pasteCode('right')"
+          >
+            <i class="bi bi-clipboard2"></i>
+          </button>
+
+          <form
+            class="mx-auto my-lg-0 upi-form-input font-13 upi-form-size d-flex align-items-center"
+          >
+            <input
+              class="form-control"
+              type="text"
+              id="file-name-2"
+              placeholder="File name"
+              aria-label="File name"
+              title="File name"
+              [(ngModel)]="fileName2"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <i
+              class="bi bi-arrow-90deg-down ms-2"
+              style="transform: rotateY(180deg)"
+            ></i>
+          </form>
+        </div>
+        <!-- /middle container -->
+
+        <button
+          type="button"
+          class="btn btn-secondary upi-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Close
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-monaco-diff-editor
+          [options]="options"
+          [originalModel]="originalModel"
+          [modifiedModel]="modifiedModel"
+          style="height: 100%"
+          class="diff-editor"
+        ></ngx-monaco-diff-editor>
+      </div>
+    </div>
+  </div>
+</div>

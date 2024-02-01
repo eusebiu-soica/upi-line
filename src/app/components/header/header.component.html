@@ -1,0 +1,391 @@
+<div class="d-none">
+  <form>
+    <input
+      type="file"
+      id="html-file"
+      name="html-file"
+      accept=".html, .htm"
+      (change)="this.name.openFile($event, 'html')"
+    />
+    <input
+      type="file"
+      id="css-file"
+      name="css-file"
+      accept=".css"
+      (change)="this.name.openFile($event, 'css')"
+    />
+    <input
+      type="file"
+      id="js-file"
+      name="js-file"
+      accept=".js"
+      (change)="this.name.openFile($event, 'javascript')"
+    />
+    <input
+      type="file"
+      id="svg-file"
+      name="svg-file"
+      accept=".svg"
+      (change)="this.name.openFile($event, 'svg')"
+    />
+    <input
+      type="file"
+      id="folder-opener"
+      accept=".js, .css, .html, .htm"
+      webkitdirectory
+      multiple
+      (change)="this.name.openFolder($event)"
+    />
+  </form>
+</div>
+<nav class="navbar navbar-expand-md bg-color shadow-sm upi-nav">
+  <div class="container-fluid ms-3 me-3">
+    <div class="d-flex align-items-center">
+      <a href="" class="navbar-brand me-4">
+        <img
+          src="assets/wolf-logo.svg"
+          alt="Upi Line Logo"
+          class="upi-logo"
+          draggable="false"
+        />
+      </a>
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-secondary me-2 upi-button font-13 padding-10-15 dropdown-toggle-split"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          style="border-radius: 0.375rem"
+        >
+          <span class="">Open</span>
+        </button>
+        <ul class="dropdown-menu" style="right: unset !important">
+          <li>
+            <a class="dropdown-item" (click)="openFile('html')"
+              ><i class="bi bi-filetype-html"></i> Open .html file</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="openFile('css')"
+              ><i class="bi bi-filetype-css"></i> Open .css file</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="openFile('js')"
+              ><i class="bi bi-filetype-js"></i> Open .js file</a
+            >
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" (click)="openFile('svg')"
+              ><i class="bi bi-filetype-svg"></i> Open .svg file</a
+            >
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" (click)="openFile('folder')"
+              ><i class="bi bi-folder"></i> Open folder</a
+            >
+          </li>
+        </ul>
+      </div>
+      <button
+        class="btn btn-secondary me-2 upi-button font-13 padding-10-15"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#diffEditor"
+      >
+        Compare your code
+      </button>
+    </div>
+    <button
+      class="navbar-toggler upi-button"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="mx-auto my-2 my-lg-0 upi-form-input font-13 upi-form-size">
+        <input
+          class="form-control me-2"
+          type="text"
+          placeholder="Project name"
+          aria-label="Project name"
+          title="Project name"
+          [(ngModel)]="fileName"
+          (ngModelChange)="setName()"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </form>
+      <div class="d-flex align-items-end">
+        <div>
+          <!-- prewiew button -->
+          <button
+            class="btn btn-outline-secondary upi-button me-1 position-relative"
+            type="button"
+            placement="bottom"
+            ngbTooltip="Live preview (CTRL + Q)"
+            tooltipClass="upi-tooltip"
+            [openDelay]="800"
+            (click)="setLive()"
+          >
+            <i class="bi live bi-eye"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle p-1 bg-success rounded-circle live-badge"
+            >
+            </span>
+          </button>
+
+          <!-- theme button -->
+          <button
+            class="btn btn-outline-secondary upi-button me-1"
+            type="button"
+            (click)="changeTheme()"
+            placement="bottom"
+            ngbTooltip="Change theme"
+            tooltipClass="upi-tooltip"
+            [openDelay]="800"
+          >
+            <i class="theme bi bi-sun"></i>
+          </button>
+
+          <!-- layout buttton -->
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-secondary upi-button me-1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border-radius: 0.375rem"
+              placement="bottom"
+              ngbTooltip="Change layout"
+              tooltipClass="upi-tooltip"
+              [openDelay]="800"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+              <i class="bi bi-grid"></i>
+            </button>
+            <div
+              class="dropdown-menu shadow-sm"
+              style="cursor: pointer"
+              style="transform: translate(37%, 0)"
+            >
+              <div class="div d-flex justify-content-center">
+                <button
+                  class="btn btn-outline-secondary upi-button"
+                  type="button"
+                  style="transform: rotateZ(180deg)"
+                  (click)="changeLayout(1)"
+                >
+                  <i class="bi bi-grid-1x2"></i>
+                </button>
+                <button
+                  class="btn btn-outline-secondary upi-button"
+                  type="button"
+                  style="transform: rotateZ(90deg)"
+                  title="Change layout"
+                  (click)="changeLayout(2)"
+                >
+                  <i class="bi bi-grid-1x2"></i>
+                </button>
+                <button
+                  class="btn btn-outline-secondary upi-button"
+                  type="button"
+                  style="transform: rotateZ(0deg)"
+                  (click)="changeLayout(3)"
+                >
+                  <i class="bi bi-grid-1x2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- info button -->
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-secondary upi-button me-1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border-radius: 0.375rem"
+              placement="bottom"
+              ngbTooltip="Editor information"
+              tooltipClass="upi-tooltip"
+              [openDelay]="800"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+              <i class="bi bi-info-circle"></i>
+            </button>
+            <div
+              class="dropdown-menu shadow-sm"
+              style="cursor: default"
+              style="
+                transform: translate(43%, 0);
+                width: 20rem;
+                padding: 40px 30px;
+              "
+            >
+              <div class="div d-flex justify-content-center flex-column">
+                <div class="row avatar">
+                  <div class="col-3">
+                    <i class="bi bi-bootstrap-fill icon-avatar"></i>
+                  </div>
+                  <div class="col-9">
+                    <div class="title">Bootstrap 5</div>
+                    <div class="subtitle">
+                      Bootstrap v5.3.1 is enabled in editor and can be used.
+                    </div>
+                  </div>
+                </div>
+                <div class="row avatar mt-5">
+                  <div class="col-3">
+                    <i class="bi bi-emoji-heart-eyes-fill icon-avatar"></i>
+                  </div>
+                  <div class="col-9">
+                    <div class="title">Bootstrap Icons</div>
+                    <div class="subtitle">
+                      Bootstrap Icons v1.10.5 is enabled in editor and can be
+                      used.
+                    </div>
+                  </div>
+                </div>
+                <div class="row avatar mt-5">
+                  <div class="col-3">
+                    <i
+                      class="bi bi-code-slash icon-avatar"
+                      style="background-color: #0769ad"
+                    ></i>
+                  </div>
+                  <div class="col-9">
+                    <div class="title">JQuery 3</div>
+                    <div class="subtitle">
+                      JQuery v3.7.0 is enabled in editor and can be used.
+                    </div>
+                  </div>
+                </div>
+                <div class="copyright mt-5">
+                  &copy;2023 Pangolin Editor. All rights reserved!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- qr code button -->
+          <div class="btn-group me-3">
+            <button
+              type="button"
+              class="btn btn-outline-secondary upi-button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="border-radius: 0.375rem"
+              placement="bottom"
+              ngbTooltip="Connect a device"
+              tooltipClass="upi-tooltip"
+              [openDelay]="800"
+            >
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                [ngClass]="{ 'd-none': deviceConnected < 1 }"
+              >
+                {{ deviceConnected
+                }}<span class="visually-hidden">unread messages</span>
+              </span>
+              <span class="visually-hidden">Toggle Dropdown</span>
+              <i class="bi bi-phone"></i>
+            </button>
+            <div
+              class="dropdown-menu shadow-sm"
+              style="cursor: pointer"
+              style="
+                transform: translate(43%, 0);
+                width: 20rem;
+                padding: 40px 30px;
+              "
+            >
+              <div class="div d-flex justify-content-center flex-column">
+                <div class="row qr-card">
+                  <div class="col-12">
+                    <div class="title">Scan QR Code</div>
+                    <div class="subtitle mt-2">
+                      Scan this QR Code and preview your site on your phone.
+                    </div>
+                  </div>
+                </div>
+                <qrcode
+                  class="mt-4 qr"
+                  [qrdata]="'https://www.netlify.com/erf-trt-fgd-hth-vfg'"
+                  [width]="256"
+                  [errorCorrectionLevel]="'M'"
+                ></qrcode>
+                <div class="input-group mt-3">
+                  <span class="input-group-text" id="basic-addon1"
+                    ><i class="bi bi-link-45deg"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Link to share"
+                    aria-label="Link"
+                    aria-describedby="basic-addon1"
+                    [ngModel]="linkToShare"
+                  />
+                </div>
+                <button class="btn btn-primary mt-3" (click)="copyLink()">
+                  Copy link
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-primary upi-accent-button downloadButton"
+              (click)="download.download()"
+            >
+              Download code
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary upi-accent-button dropdown-toggle dropdown-toggle-split"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" style="cursor: pointer">
+              <li>
+                <a class="dropdown-item" (click)="download.downloadCSS()"
+                  ><i class="bi bi-filetype-css"></i> Download .css file</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="download.downloadJS()"
+                  ><i class="bi bi-filetype-js"></i> Download .js file</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" (click)="download.downloadSVG()"
+                  ><i class="bi bi-filetype-svg"></i> Download .svg file</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item" (click)="this.download.downloadZIP()"
+                  ><i class="bi bi-file-zip"></i> Download zip archive</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-diff-editor></app-diff-editor>
+</nav>

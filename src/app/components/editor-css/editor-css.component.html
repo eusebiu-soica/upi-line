@@ -1,0 +1,7 @@
+<ngx-monaco-editor
+  #cssEditor
+  [options]="editorOptions"
+  [(ngModel)]="code"
+  style="height: 100%"
+  (ngModelChange)="setCode()"
+></ngx-monaco-editor>

@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@mixin light() {
+  --font: "Poppins", sans-serif;
+
+  --background: rgb(255, 255, 255);
+  --background-color: rgb(243, 243, 243);
+  --hover-background-color: rgb(233 233 233);
+
+  --text-color: rgb(68, 68, 68);
+  --placeholder: rgb(105, 105, 105);
+}
+
+@mixin dark() {
+  --font: "Poppins", sans-serif;
+
+  --background: rgb(30 30 30);
+  --background-color: rgb(43, 43, 43);
+  --hover-background-color: #353535;
+
+  --text-color: rgb(235, 235, 235);
+  --placeholder: rgb(184, 184, 184);
+}
+
+// color change for tabs
+.nav {
+  --bs-nav-link-padding-x: 1rem;
+  --bs-nav-link-padding-y: 0.5rem;
+  --bs-nav-link-font-weight: ;
+  --bs-nav-link-color: #878e98;
+  --bs-nav-link-hover-color: var(--text-color);
+}
+
+.nav-pills {
+  --bs-nav-pills-border-radius: var(--bs-border-radius);
+  --bs-nav-pills-link-active-color: var(--text-color);
+  --bs-nav-pills-link-active-bg: var(--hover-background-color);
+}
+
+html {
+  @include light();
+}
+html.dark {
+  @include dark();
+}
+
+body {
+  background-color: var(--background);
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.diff-editor {
+  & .editor-container {
+    height: 100% !important;
+  }
+}
+
+// font sizes
+.font-13 {
+  font-size: 13px;
+}
+
+// paddings
+.padding-10-15 {
+  padding: 10px 15px;
+}
+
+// colors
+.c-white {
+  color: var(--text-color) !important;
+}
+
+//toast messages color
+.text-bg-success {
+  background-color: #039f0b !important;
+}
+.text-bg-danger {
+  background-color: #d65745 !important;
+}
+.text-bg-info {
+  background-color: #287fb9 !important;
+}
+.text-bg-warning {
+  background-color: #eea62f !important;
+}
+
+// layout type
+.layout-1 {
+  flex-direction: row-reverse !important;
+  & .tab-content {
+    height: 82%;
+  }
+  & .rect {
+    width: calc(100% / 2) !important;
+  }
+
+  & .rect2 {
+    width: calc(100% / 2) !important;
+    & .tab-content {
+      height: 91%;
+    }
+  }
+}
+
+.layout-2 {
+  flex-direction: column !important;
+}
+
+.layout-3 {
+  flex-direction: row !important;
+  & .rect {
+    width: calc(100% / 2) !important;
+  }
+
+  & .rect2 {
+    width: calc(100% / 2) !important;
+    & .tab-content {
+      height: 91%;
+    }
+  }
+}
+
+.layout-4 {
+  & .tab-content {
+    height: 92%;
+  }
+  & .rect {
+    display: none;
+  }
+}
+.layout-5 {
+  & .rect2 {
+    display: none;
+  }
+}
+
+// toast redesign
+.toast-body {
+  padding: 10px;
+}
+
+.toast {
+  border: none;
+  padding: 0px 0px 0px 10px;
+  color: #f2f2f2 !important;
+  margin: 7px 0 0;
+}
+
+.toast-icon {
+  font-size: 18px;
+  margin: 0 5px 0 0;
+}
+
+// tab resize
+.tab-content {
+  height: 82%;
+}
+.tab-pane {
+  height: 100%;
+}
+
+.upi-button {
+  color: var(--text-color);
+  outline: none;
+  font-family: var(--font);
+  background-color: transparent;
+  border-color: transparent;
+  &:hover {
+    background-color: var(--hover-background-color);
+    border-color: var(--hover-background-color);
+    color: var(--text-color);
+  }
+}
+
+.upi-form-input {
+  & input {
+    background-color: var(--hover-background-color);
+    border: none;
+    color: var(--text-color) !important;
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 10px 15px;
+    &::placeholder {
+      color: var(--placeholder);
+    }
+    &:focus {
+      background-color: var(--background);
+    }
+  }
+  color: var(--text-color);
+}
+
+.dropdown-menu {
+  background-color: var(--background-color);
+  cursor: pointer;
+  & li {
+    & a {
+      color: var(--text-color);
+      &:hover {
+        background-color: var(--hover-background-color);
+        color: var(--text-color);
+      }
+    }
+  }
+}
+
+// pangolin tooltip
+.upi-tooltip {
+  top: 6px !important;
+}

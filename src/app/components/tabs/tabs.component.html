@@ -1,0 +1,158 @@
+<ul
+  class="nav nav-pills"
+  id="pills-tab"
+  role="tablist"
+  style="margin: 7px 0 15px 0; position: relative; width: calc(100% - 10px)"
+>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active position-relative"
+      id="pills-home-tab"
+      data-bs-toggle="pill"
+      data-bs-target="#pills-home"
+      type="button"
+      role="tab"
+      aria-controls="pills-home"
+      aria-selected="true"
+      (click)="setEditor('html')"
+    >
+      Html
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="pills-profile-tab"
+      data-bs-toggle="pill"
+      data-bs-target="#pills-profile"
+      type="button"
+      role="tab"
+      aria-controls="pills-profile"
+      aria-selected="false"
+      (click)="setEditor('css')"
+    >
+      Css
+    </button>
+  </li>
+
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="pills-contact-tab"
+      data-bs-toggle="pill"
+      data-bs-target="#pills-contact"
+      type="button"
+      role="tab"
+      aria-controls="pills-contact"
+      aria-selected="false"
+      (click)="setEditor('js')"
+    >
+      JavaScript
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <div class="vr"></div>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="pills-res-tab"
+      data-bs-toggle="pill"
+      data-bs-target="#pills-res"
+      type="button"
+      role="tab"
+      aria-controls="pills-res"
+      aria-selected="false"
+    >
+      Resources
+    </button>
+  </li>
+  <li
+    class="nav-item alert-changes fade"
+    role="presentation"
+    [class.show]="this.editor.save === false"
+  >
+    <div class="alert alert-warning" role="alert">Unsaved changes!</div>
+  </li>
+  <li class="nav-item right-buttons" role="presentation">
+    <button
+      class="btn btn-outline-secondary upi-button me-1"
+      placement="bottom"
+      ngbTooltip="Clear editor"
+      tooltipClass="upi-tooltip"
+      [openDelay]="800"
+      (click)="clearEditor()"
+    >
+      <i class="bi bi-trash3"></i>
+    </button>
+    <button
+      class="btn-outline-secondary btn upi-button me-1"
+      placement="bottom"
+      ngbTooltip="Paste from clipboard"
+      tooltipClass="upi-tooltip"
+      [openDelay]="800"
+      (click)="pasteCode()"
+    >
+      <i class="bi bi-clipboard2"></i>
+    </button>
+    <button
+      class="btn btn-outline-secondary upi-button me-1"
+      placement="bottom"
+      ngbTooltip="Copy to clipboard"
+      tooltipClass="upi-tooltip"
+      [openDelay]="800"
+      (click)="copyCode()"
+    >
+      <i class="bi bi-clipboard-check"></i>
+    </button>
+
+    <button
+      class="btn btn-outline-secondary upi-button"
+      placement="bottom"
+      ngbTooltip="Fullscreen (CTRL + ;)"
+      tooltipClass="upi-tooltip"
+      [openDelay]="800"
+      (click)="fullScreenEditor()"
+    >
+      <i class="bi bi-fullscreen fullScreen"></i>
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="pills-home"
+    role="tabpanel"
+    aria-labelledby="pills-home-tab"
+    tabindex="0"
+  >
+    <app-editor-html></app-editor-html>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-profile"
+    role="tabpanel"
+    aria-labelledby="pills-profile-tab"
+    tabindex="0"
+  >
+    <app-editor-css></app-editor-css>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-contact"
+    role="tabpanel"
+    aria-labelledby="pills-contact-tab"
+    tabindex="0"
+  >
+    <app-editor-js></app-editor-js>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-res"
+    role="tabpanel"
+    aria-labelledby="pills-contact-tab"
+    tabindex="0"
+  >
+    <app-resources></app-resources>
+  </div>
+</div>

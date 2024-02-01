@@ -1,0 +1,81 @@
+.upi-logo {
+  width: 40px;
+  // padding-right: 30px;
+}
+
+.bg-color {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.upi-nav {
+  height: 60px;
+}
+
+.upi-form-size {
+  width: 40%;
+}
+
+.upi-accent-button {
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  padding: 10px 15px !important;
+  & i {
+    font-size: unset;
+  }
+}
+
+.dropdown-menu[data-bs-popper] {
+  right: 0;
+  left: unset;
+}
+
+.icon-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #6e2bf2;
+  color: white;
+  font-size: 25px;
+  border-radius: 50%;
+}
+
+.avatar {
+  & .title {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  & .subtitle {
+    font-size: 13px;
+    color: #828282;
+  }
+}
+.qr-card {
+  text-align: center;
+  & .title {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  & .subtitle {
+    font-size: 13px;
+    color: #828282;
+  }
+}
+
+.copyright {
+  color: #828282;
+  font-size: 13px;
+  text-align: center;
+}
+
+.live-badge {
+  position: absolute !important;
+  top: 16% !important;
+  transform: translate(-100%, -65%) !important;
+}

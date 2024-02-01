@@ -1,0 +1,22 @@
+.right-buttons {
+  position: absolute;
+  right: 0px;
+}
+
+.alert-changes {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  & .alert {
+    --bs-alert-padding-y: 7.5px;
+    font-size: 14px !important;
+  }
+}
+
+.vr {
+  background: #989898;
+  margin: 0 10px;
+  height: 20px;
+  position: relative;
+  top: 11px;
+}

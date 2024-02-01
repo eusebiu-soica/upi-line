@@ -1,0 +1,22 @@
+<div
+  class="position-fixed bottom-0 start-50 translate-middle-x p-3"
+  style="z-index: 9999999"
+>
+  <!-- *ngFor="let toast of toastService.toasts" -->
+  <ngb-toast
+    *ngFor="let toast of toastService.toasts"
+    [class]="toast.class"
+    [autohide]="toast.type == 'error' ? false : true"
+  >
+    <div class="d-flex align-items-center">
+      <div class="toast-icon" [innerHTML]="toast.icon"></div>
+      <div class="toast-body">{{ toast.body }}</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+  </ngb-toast>
+</div>

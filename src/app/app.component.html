@@ -1,0 +1,16 @@
+<!-- <div *ngIf="loading"> -->
+<ngx-spinner
+  bdColor="rgba(43, 43, 43, 1)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<!-- </div> -->
+
+<!-- <div *ngIf="!loading"> -->
+<app-toasts></app-toasts>
+<app-header></app-header>
+<app-editor-container></app-editor-container>
+<!-- </div> -->
