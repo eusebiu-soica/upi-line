@@ -13,7 +13,7 @@ export class EditorCssComponent {
     public editor: EditorServiceService
   ) {}
 
-  editorOptions = { theme: 'vs-dark', language: 'css', automaticLayout: true };
+  editorOptions = { theme: 'vs-dark', language: 'scss', automaticLayout: true };
   code: string;
   ngOnInit() {
     this.themeEditor.getTheme().subscribe((theme) => {

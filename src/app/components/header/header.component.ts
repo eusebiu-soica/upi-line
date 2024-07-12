@@ -3,7 +3,6 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastServiceService } from 'src/app/services/toast-service.service';
 import { ThemeChangeService } from 'src/app/services/theme-change.service';
 import { EditorServiceService } from 'src/app/services/editor-service.service';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
